@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AKS Platform With Terraform and Helm | Ramakrishna Reddy</title>
+    <meta
+      name="description"
+      content="A sanitized AKS and Terraform case study covering architecture, CI/CD, Helm, Key Vault, security decisions, observability, and reported delivery outcomes."
+    />
+    <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../styles.css?v=20260613-consolidated1" />
+  </head>
+  <body class="article-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="article-header">
+      <a href="../../index.html">Ramakrishna Reddy</a>
+      <a href="https://github.com/ramakrishnareddykittech-svg/portfolioofRama" target="_blank" rel="noopener noreferrer">Repository</a>
+    </header>
+
+    <main class="article-shell" id="main">
+      <header class="article-hero">
+        <div class="section-kicker">Case study</div>
+        <h1>AKS platform delivery with Terraform, Helm, and secure Azure identity.</h1>
+        <p class="article-dek">
+          A sanitized implementation story showing how infrastructure, application delivery, security, and operations fit into one repeatable Azure platform.
+        </p>
+        <div class="article-meta">
+          <span>Architecture: AKS + ACR + Key Vault</span>
+          <span>Delivery: Terraform + Helm + CI/CD</span>
+          <span>Evidence: resume-reported professional outcomes</span>
+        </div>
+      </header>
+
+      <article class="article-content">
+        <div class="article-callout">
+          Client names, source code, subscription details, credentials, and exact production values are omitted. The architecture and decisions are retained so the work can still be evaluated.
+        </div>
+
+        <h2>The problem</h2>
+        <p>
+          Containerized services needed a deployment path that could be rebuilt across environments, released quickly, and operated without relying on manual Azure Portal work. The platform also needed a clear answer for secrets, access, health checks, monitoring, and rollback.
+        </p>
+
+        <h2>Architecture</h2>
+        <figure class="case-study-architecture">
+          <img src="architecture.svg" alt="AKS platform architecture with Terraform, CI/CD, ACR, Helm, Key Vault, monitoring, and ingress" width="1200" height="760" />
+          <figcaption>Sanitized AKS delivery architecture.</figcaption>
+        </figure>
+
+        <h2>Provisioning model</h2>
+        <p>
+          Terraform owns the Azure foundation: resource groups, networking, AKS, ACR, Key Vault, Log Analytics, and role assignments. The important design choice is ownership. If a resource affects repeatability, access, or release behavior, it belongs in reviewed code rather than a portal checklist.
+        </p>
+        <p>
+          Modules separate shared platform concerns from environment values. Remote state, consistent naming, tags, and explicit outputs make it easier for the release layer to consume the platform without copying infrastructure details into application pipelines.
+        </p>
+
+        <h2>Release flow</h2>
+        <ol>
+          <li>A pull request validates application and infrastructure changes.</li>
+          <li>The build runs tests and quality or security checks.</li>
+          <li>An immutable image is pushed to Azure Container Registry.</li>
+          <li>The approved image tag is passed to Helm.</li>
+          <li>AKS performs a controlled rollout using readiness and liveness probes.</li>
+          <li>Deployment health is checked before promotion is considered complete.</li>
+          <li>A failed release rolls back to the previous Helm revision.</li>
+        </ol>
+
+        <h2>Challenges and decisions</h2>
+        <h3>Configuration drift</h3>
+        <p>
+          Manual environment setup creates small differences that become production incidents later. Terraform and Helm provide separate but connected sources of truth for platform and workload configuration.
+        </p>
+
+        <h3>Secrets and identity</h3>
+        <p>
+          The platform prefers managed identity and scoped RBAC over stored credentials. Application secrets remain in Key Vault, while deployment permissions are separated from runtime permissions.
+        </p>
+
+        <h3>Safe releases</h3>
+        <p>
+          A deployment is not safe because the command returned success. Probes, rollout status, telemetry, and a tested rollback path are part of the release gate.
+        </p>
+
+        <h3>Operational handoff</h3>
+        <p>
+          Dashboards, alerts, ownership, and runbooks are defined before production handoff. This prevents the common gap where a platform can deploy software but cannot explain why it is unhealthy.
+        </p>
+
+        <h2>Security decisions</h2>
+        <ul>
+          <li>Use managed identity where Azure resources can authenticate directly.</li>
+          <li>Keep secrets in Key Vault and out of Git and generic pipeline variables.</li>
+          <li>Apply least-privilege RBAC to deployment and runtime identities.</li>
+          <li>Separate environments and namespaces to reduce accidental access.</li>
+          <li>Validate application and infrastructure changes before image publication.</li>
+          <li>Retain deployment and access logs for audit and incident review.</li>
+        </ul>
+
+        <h2>Measured result</h2>
+        <p>
+          The resume reports that automated delivery reduced release turnaround from hours to under 15 minutes and improved reliability using zero-downtime deployment patterns. Those results are stated as professional experience, while this public repository provides the architecture and decision record rather than confidential client code.
+        </p>
+
+        <h2>What I would verify in production</h2>
+        <ul>
+          <li>Terraform plans are reviewed and contain no unintended replacement.</li>
+          <li>Images use immutable tags and can be traced back to a commit.</li>
+          <li>Readiness, liveness, resource requests, and limits match real workload behavior.</li>
+          <li>Dashboards show platform, workload, dependency, and release signals.</li>
+          <li>Alerts have owners, thresholds, and a linked runbook.</li>
+          <li>Rollback is tested, not just documented.</li>
+        </ul>
+
+        <div class="article-next">
+          <a class="btn primary-btn" href="../../articles/deploy-aks-terraform-helm.html">Read the deployment article</a>
+          <a class="btn secondary-btn" href="../../index.html#projects">Back to projects</a>
+        </div>
+      </article>
+    </main>
+  </body>
+</html>

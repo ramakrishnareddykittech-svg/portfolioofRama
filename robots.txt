@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ramakrishnareddykittech-svg.github.io/portfolioofRama/sitemap.xml

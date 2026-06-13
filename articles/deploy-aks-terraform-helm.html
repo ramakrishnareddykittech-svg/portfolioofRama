@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Deploying AKS With Terraform and Helm | Ramakrishna Reddy</title>
+    <meta
+      name="description"
+      content="A practical guide to provisioning AKS with Terraform and releasing applications with Helm, including identity, probes, rollback, and environment promotion."
+    />
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../styles.css?v=20260613-consolidated1" />
+  </head>
+  <body class="article-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="article-header">
+      <a href="../index.html">Ramakrishna Reddy</a>
+      <a href="../case-studies/aks-terraform-platform/">AKS case study</a>
+    </header>
+
+    <main class="article-shell" id="main">
+      <header class="article-hero">
+        <div class="section-kicker">AKS + Infrastructure as Code</div>
+        <h1>Deploying AKS with Terraform and Helm without creating release chaos.</h1>
+        <p class="article-dek">
+          A practical delivery model for separating platform provisioning from workload releases while keeping identity, rollback, and observability connected.
+        </p>
+        <div class="article-meta">
+          <span>By Ramakrishna Reddy Kandala</span>
+          <span>10 minute read</span>
+          <span>Azure · AKS · Terraform · Helm</span>
+        </div>
+      </header>
+
+      <article class="article-content">
+        <h2>Start with a clean ownership boundary</h2>
+        <p>
+          Terraform and Helm solve different problems. Terraform should own Azure resources and their access relationships. Helm should own Kubernetes workload configuration. Mixing both layers into one large deployment script makes failures harder to understand and rollback.
+        </p>
+        <p>
+          A practical split is:
+        </p>
+        <ul>
+          <li>Terraform: resource groups, VNet, subnets, AKS, ACR, Key Vault, Log Analytics, identities, and role assignments.</li>
+          <li>Helm: Deployments, Services, Ingress, ConfigMaps, probes, autoscaling, resource settings, and application release values.</li>
+        </ul>
+
+        <h2>Design Terraform outputs for the release layer</h2>
+        <p>
+          The application pipeline should not rediscover infrastructure by guessing resource names. Terraform outputs can expose only the values needed by later automation, such as the cluster name, resource group, registry login server, and Key Vault name.
+        </p>
+        <pre><code>output "aks_cluster_name" {
+  value = azurerm_kubernetes_cluster.platform.name
+}
+
+output "acr_login_server" {
+  value = azurerm_container_registry.platform.login_server
+}
+
+output "key_vault_name" {
+  value = azurerm_key_vault.platform.name
+}</code></pre>
+        <p>
+          Outputs are a contract. Avoid exposing secrets, kubeconfig content, or credentials through them.
+        </p>
+
+        <h2>Prefer identity over stored credentials</h2>
+        <p>
+          The release process needs permission to publish images and deploy workloads, but the running application should not inherit those permissions. Keep deployment identity and workload identity separate.
+        </p>
+        <ul>
+          <li>Grant the AKS kubelet identity permission to pull from ACR.</li>
+          <li>Use workload or managed identity for application access to Azure services.</li>
+          <li>Use Key Vault for secrets that cannot be replaced with identity.</li>
+          <li>Scope pipeline permissions to the target environment and required actions.</li>
+        </ul>
+
+        <div class="article-callout">
+          A pipeline that can deploy to production should not automatically have broad subscription ownership. Convenience is not a valid reason for permanent high privilege.
+        </div>
+
+        <h2>Publish immutable images</h2>
+        <p>
+          Do not promote a moving tag such as <code>latest</code>. Use a commit SHA, build ID, or release identifier so every Kubernetes revision maps back to one image and one source change.
+        </p>
+        <pre><code>image:
+  repository: myregistry.azurecr.io/orders-api
+  tag: "a81f0c9"
+  pullPolicy: IfNotPresent</code></pre>
+        <p>
+          Promotion should change the approved image tag, not rebuild the same source differently for each environment.
+        </p>
+
+        <h2>Make health checks part of release design</h2>
+        <p>
+          Kubernetes cannot protect a rollout if the application exposes no useful health endpoints. Readiness should answer whether a pod can receive traffic. Liveness should answer whether the process is stuck and needs restarting.
+        </p>
+        <pre><code>readinessProbe:
+  httpGet:
+    path: /health/ready
+    port: http
+  initialDelaySeconds: 10
+  periodSeconds: 5
+
+livenessProbe:
+  httpGet:
+    path: /health/live
+    port: http
+  initialDelaySeconds: 30
+  periodSeconds: 10</code></pre>
+        <p>
+          Avoid making liveness depend on every external service. A temporary database issue should not necessarily restart every application pod.
+        </p>
+
+        <h2>Use environment values without copying charts</h2>
+        <p>
+          Keep one reusable chart and separate value files for development, test, and production. Differences should be intentional and reviewable: replica counts, resource settings, hostnames, autoscaling thresholds, and environment references.
+        </p>
+        <p>
+          If each environment has its own copied chart, fixes eventually land in one place and not another.
+        </p>
+
+        <h2>Gate the rollout with real checks</h2>
+        <ol>
+          <li>Run unit tests and static checks.</li>
+          <li>Build the image once.</li>
+          <li>Run the selected quality or security checks.</li>
+          <li>Push the immutable image to ACR.</li>
+          <li>Render or lint the Helm chart.</li>
+          <li>Deploy with a timeout and atomic rollback behavior.</li>
+          <li>Check rollout status and application health.</li>
+          <li>Record the deployed image and Helm revision.</li>
+        </ol>
+        <pre><code>helm upgrade --install orders-api ./charts/orders-api \
+  --namespace orders \
+  --create-namespace \
+  --values ./environments/prod.yaml \
+  --set image.tag="$BUILD_COMMIT" \
+  --atomic \
+  --timeout 10m</code></pre>
+
+        <h2>Production handoff checklist</h2>
+        <ul>
+          <li>Dashboards show pod health, errors, latency, saturation, and dependency failures.</li>
+          <li>Alerts identify an owner and link to a useful runbook.</li>
+          <li>Resource requests and limits come from observed workload behavior.</li>
+          <li>Rollback has been exercised with a known previous image.</li>
+          <li>Terraform state and deployment logs are protected and auditable.</li>
+          <li>Someone outside the implementation team can operate the release.</li>
+        </ul>
+
+        <h2>The practical result</h2>
+        <p>
+          A strong AKS delivery model is not just a cluster and a pipeline. It is a chain of explicit contracts: Terraform owns the platform, Helm owns workload configuration, identity controls access, immutable images preserve traceability, and observability confirms whether the release is actually healthy.
+        </p>
+
+        <div class="article-next">
+          <a class="btn primary-btn" href="../case-studies/aks-terraform-platform/">Open the case study</a>
+          <a class="btn secondary-btn" href="aks-observability-azure-monitor-grafana.html">Next: AKS observability</a>
+        </div>
+      </article>
+    </main>
+  </body>
+</html>

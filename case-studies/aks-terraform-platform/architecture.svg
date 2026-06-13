@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">AKS platform reference architecture</title>
+  <desc id="desc">Terraform provisions Azure networking, AKS, ACR, Key Vault, and monitoring. A CI/CD pipeline publishes a container image and deploys it to AKS with Helm.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eef7ff"/>
+      <stop offset="1" stop-color="#fff3cf"/>
+    </linearGradient>
+    <linearGradient id="flow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0078d4"/>
+      <stop offset="1" stop-color="#00a7c7"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0 10 5 0 10Z" fill="#0078d4"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#32163f" flood-opacity=".12"/>
+    </filter>
+    <style>
+      .box{fill:#fff;stroke:#d8cce0;stroke-width:2;rx:20;filter:url(#shadow)}
+      .azure{fill:#e8f4ff;stroke:#0078d4}
+      .secure{fill:#eaf9f3;stroke:#21a179}
+      .ops{fill:#fff5d7;stroke:#e5a900}
+      .title{font:700 26px system-ui,sans-serif;fill:#32163f}
+      .label{font:700 18px system-ui,sans-serif;fill:#32163f}
+      .small{font:500 14px system-ui,sans-serif;fill:#5f4a6d}
+      .flow{fill:none;stroke:url(#flow);stroke-width:5;stroke-linecap:round;marker-end:url(#arrow)}
+      .dash{stroke-dasharray:10 10}
+    </style>
+  </defs>
+  <rect width="1200" height="760" fill="url(#bg)"/>
+  <text x="60" y="62" class="title">AKS + Terraform delivery architecture</text>
+  <text x="60" y="91" class="small">Sanitized reference model based on the portfolio case study</text>
+
+  <rect class="box" x="58" y="145" width="210" height="130"/>
+  <text class="label" x="163" y="190" text-anchor="middle">Source control</text>
+  <text class="small" x="163" y="222" text-anchor="middle">Application + Helm</text>
+  <text class="small" x="163" y="246" text-anchor="middle">Terraform modules</text>
+
+  <rect class="box azure" x="352" y="125" width="240" height="170"/>
+  <text class="label" x="472" y="172" text-anchor="middle">CI/CD pipeline</text>
+  <text class="small" x="472" y="204" text-anchor="middle">Build + unit tests</text>
+  <text class="small" x="472" y="228" text-anchor="middle">Quality / security gate</text>
+  <text class="small" x="472" y="252" text-anchor="middle">Image publish + Helm</text>
+
+  <rect class="box azure" x="682" y="135" width="190" height="140"/>
+  <text class="label" x="777" y="187" text-anchor="middle">Azure Container</text>
+  <text class="label" x="777" y="214" text-anchor="middle">Registry</text>
+  <text class="small" x="777" y="246" text-anchor="middle">Immutable images</text>
+
+  <rect class="box azure" x="940" y="125" width="205" height="170"/>
+  <text class="label" x="1042" y="170" text-anchor="middle">AKS cluster</text>
+  <text class="small" x="1042" y="202" text-anchor="middle">Ingress + namespaces</text>
+  <text class="small" x="1042" y="226" text-anchor="middle">Helm releases + probes</text>
+  <text class="small" x="1042" y="250" text-anchor="middle">Scaling + rollback</text>
+
+  <path class="flow" d="M268 210H344"/>
+  <path class="flow" d="M592 210H674"/>
+  <path class="flow" d="M872 210H932"/>
+
+  <rect class="box" x="58" y="425" width="245" height="180"/>
+  <text class="label" x="180" y="471" text-anchor="middle">Terraform foundation</text>
+  <text class="small" x="180" y="505" text-anchor="middle">Resource groups + VNet</text>
+  <text class="small" x="180" y="529" text-anchor="middle">AKS + ACR + Key Vault</text>
+  <text class="small" x="180" y="553" text-anchor="middle">Log Analytics + RBAC</text>
+
+  <rect class="box secure" x="390" y="425" width="230" height="180"/>
+  <text class="label" x="505" y="471" text-anchor="middle">Security controls</text>
+  <text class="small" x="505" y="505" text-anchor="middle">Managed identity</text>
+  <text class="small" x="505" y="529" text-anchor="middle">Least-privilege RBAC</text>
+  <text class="small" x="505" y="553" text-anchor="middle">Key Vault integration</text>
+
+  <rect class="box ops" x="706" y="425" width="230" height="180"/>
+  <text class="label" x="821" y="471" text-anchor="middle">Observability</text>
+  <text class="small" x="821" y="505" text-anchor="middle">Azure Monitor + logs</text>
+  <text class="small" x="821" y="529" text-anchor="middle">Prometheus + Grafana</text>
+  <text class="small" x="821" y="553" text-anchor="middle">Alerts + runbooks</text>
+
+  <rect class="box" x="1005" y="425" width="140" height="180"/>
+  <text class="label" x="1075" y="471" text-anchor="middle">Users</text>
+  <text class="small" x="1075" y="505" text-anchor="middle">HTTPS</text>
+  <text class="small" x="1075" y="529" text-anchor="middle">Ingress</text>
+  <text class="small" x="1075" y="553" text-anchor="middle">Service</text>
+
+  <path class="flow dash" d="M180 425V330H1042V303"/>
+  <path class="flow dash" d="M505 425V345H1000V303"/>
+  <path class="flow dash" d="M821 425V320H1075V303"/>
+  <path class="flow" d="M1075 425V303"/>
+
+  <rect x="58" y="660" width="1087" height="48" rx="24" fill="#32163f"/>
+  <text x="601" y="691" text-anchor="middle" style="font:700 16px system-ui,sans-serif;fill:#fff">
+    Provision once in code · publish immutable images · release through Helm · observe every rollout
+  </text>
+</svg>

@@ -1,16 +1,779 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ramakrishna Reddy Kandala | Cloud & DevOps Engineer</title>
     <meta
       name="description"
-      content="Azure DevOps and Cloud Engineering portfolio with CI/CD, AKS, ACR, Key Vault, AIOps, and MLOps project experience."
+      content="Portfolio of Ramakrishna Reddy Kandala, Senior DevOps Engineer focused on Azure, AKS, Terraform, CI/CD, Key Vault, monitoring, and secure cloud automation."
     />
-    <title>Azure DevOps Portfolio</title>
+    <meta name="author" content="Ramakrishna Reddy Kandala" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta property="og:title" content="Ramakrishna Reddy Kandala | Cloud & DevOps Engineer" />
+    <meta
+      property="og:description"
+      content="Azure DevOps, AKS, Terraform, CI/CD automation, observability, and secure cloud delivery portfolio."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ramakrishnareddykittech-svg.github.io/portfolioofRama/" />
+    <meta
+      property="og:image"
+      content="https://ramakrishnareddykittech-svg.github.io/portfolioofRama/assets/devops-motion-hero.png"
+    />
+    <meta name="theme-color" content="#32163f" />
+    <link rel="canonical" href="https://ramakrishnareddykittech-svg.github.io/portfolioofRama/" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css?v=20260613-consolidated1" />
+    <script src="script.js?v=20260613-consolidated1" defer></script>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" data-elevate>
+      <nav class="nav-shell" aria-label="Primary navigation">
+        <div class="nav-left">
+          <a href="#home" class="nav-link active" aria-current="location">Home</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#skills" class="nav-link">Skills</a>
+          <a href="#projects" class="nav-link">Projects</a>
+          <a href="#flow" class="nav-link">Architecture</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </div>
+
+        <a class="brand" href="#home" aria-label="Ramakrishna Reddy home">
+          Ramakrishna Reddy
+        </a>
+
+        <div class="header-actions">
+          <a
+            class="social-link copy-link"
+            href="mailto:RAMAKRISHNA.REDDYIT@GMAIL.COM"
+            data-copy="RAMAKRISHNA.REDDYIT@GMAIL.COM"
+            aria-label="Copy email address"
+            title="Copy email address"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 6h16v12H4z" />
+              <path d="m4 7 8 6 8-6" />
+            </svg>
+          </a>
+          <a
+            class="social-link brand-icon"
+            href="https://in.linkedin.com/in/ramakrishna-reddy-kandala-718131229"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Ramakrishna Reddy Kandala on LinkedIn"
+            title="LinkedIn"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5.2 8.9h3.1v9.9H5.2zM6.8 4.2a1.8 1.8 0 1 1 0 3.6 1.8 1.8 0 0 1 0-3.6zM10.2 8.9h3v1.4h.1c.4-.8 1.5-1.7 3.1-1.7 3.3 0 3.9 2.2 3.9 5v5.2h-3.1v-4.6c0-1.1 0-2.6-1.6-2.6s-1.8 1.2-1.8 2.5v4.7h-3.1z" />
+            </svg>
+          </a>
+          <a
+            class="social-link brand-icon"
+            href="https://github.com/ramakrishnareddykittech-svg/portfolioofRama"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub portfolio repository"
+            title="GitHub"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3a9 9 0 0 0-3 17c.4.1.6-.2.6-.5v-2c-2.4.5-3-1-3-1-.4-1-1-1.3-1-1.3-.8-.5 0-.5 0-.5.9.1 1.4 1 1.4 1 .8 1.4 2.1 1 2.6.8.1-.6.3-1 .6-1.2-2-.2-4-.9-4-4a3.2 3.2 0 0 1 .9-2.2c-.1-.2-.4-1 .1-2.2 0 0 .7-.2 2.3.9a8 8 0 0 1 4.2 0c1.6-1.1 2.3-.9 2.3-.9.5 1.2.2 2 .1 2.2.6.6.9 1.4.9 2.2 0 3.1-2 3.8-4 4 .4.3.7.9.7 1.8v2.4c0 .3.2.6.7.5A9 9 0 0 0 12 3z" />
+            </svg>
+          </a>
+          <button class="theme-toggle" type="button" aria-label="Enable dark mode" aria-pressed="false">
+            <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+            </svg>
+            <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20 15.5A8 8 0 0 1 8.5 4 7 7 0 1 0 20 15.5z" />
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero section" id="home">
+        <div class="hero-bg" aria-hidden="true"></div>
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="role-line">Senior DevOps Engineer</p>
+            <h1>
+              Building cloud
+              <span>infrastructure</span>
+              that never sleeps
+            </h1>
+            <p class="hero-subtitle">
+              Azure Cloud, Kubernetes, Terraform, CI/CD, and DevOps automation for reliable, secure, production-grade platforms.
+            </p>
+            <p class="typing-line" aria-hidden="true">
+              <span id="typed-role">Cloud Platform Engineer</span>
+            </p>
+            <div class="hero-actions">
+              <a class="btn primary-btn" href="#projects">View Projects</a>
+              <a
+                class="btn secondary-btn resume-link"
+                href="assets/Ramakrishna_Reddy_Senior_DevOps_Engineer.docx"
+                download="Ramakrishna_Reddy_Senior_DevOps_Engineer.docx"
+              >
+                Download Resume
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-visual motion-scene" aria-label="Cloud engineering workspace">
+            <img
+              class="hero-illustration"
+              src="assets/devops-motion-hero.png"
+              alt="Cloud and DevOps engineer managing infrastructure, containers, and monitoring"
+              width="1448"
+              height="1086"
+              decoding="async"
+              fetchpriority="high"
+            />
+            <div class="deployment-status" aria-label="Featured AKS case study">
+              <span class="status-dot" aria-hidden="true"></span>
+              <div>
+                <strong>AKS case study</strong>
+                <small>Production rollout scenario</small>
+              </div>
+            </div>
+            <figure class="identity-medallion">
+              <img
+                src="assets/profile-photo.jpg"
+                alt="Ramakrishna Reddy Kandala"
+                width="720"
+                height="900"
+                decoding="async"
+              />
+              <figcaption>
+                <strong>Ramakrishna Reddy</strong>
+                <span>Cloud &amp; DevOps</span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="stats-strip" aria-label="Career highlights">
+        <div class="stat-item">
+          <strong>7 yrs</strong>
+          <span>overall IT experience</span>
+        </div>
+        <div class="stat-item">
+          <strong>American Express</strong>
+          <span>current employer</span>
+        </div>
+        <div class="stat-item">
+          <strong>2 certs</strong>
+          <span>Azure AZ-104 and AZ-400</span>
+        </div>
+        <div class="stat-item">
+          <strong>&lt;15 min</strong>
+          <span>resume-reported release time</span>
+        </div>
+      </section>
+
+      <div class="motion-rail" aria-label="Core platform capabilities">
+        <div class="motion-track">
+          <span>Azure DevOps</span><i></i>
+          <span>AKS</span><i></i>
+          <span>Terraform</span><i></i>
+          <span>GitHub Actions</span><i></i>
+          <span>Key Vault</span><i></i>
+          <span>Grafana</span><i></i>
+          <span>Azure DevOps</span><i></i>
+          <span>AKS</span><i></i>
+          <span>Terraform</span><i></i>
+          <span>GitHub Actions</span><i></i>
+          <span>Key Vault</span><i></i>
+          <span>Grafana</span><i></i>
+        </div>
+      </div>
+
+      <section class="section split-section" id="about">
+        <div class="section-kicker">About</div>
+        <div class="split-copy">
+          <h2>Automation-first engineer for Azure production systems.</h2>
+          <p>
+            I am a Senior DevOps Engineer with 7 years of IT experience, including 4+ years focused on DevOps and cloud automation. I design and support CI/CD pipelines, Azure infrastructure, Kubernetes deployments, and secure release patterns.
+          </p>
+          <p>
+            I currently work at American Express. Earlier roles at HCLTech and Mphasis built my background across enterprise DevOps delivery and Java engineering.
+          </p>
+          <p>
+            My strongest work sits around Azure DevOps, GitHub Actions, Jenkins, Docker, AKS, Helm, Terraform, ARM templates, Bicep, Key Vault, Managed Identity, Azure Monitor, Prometheus, and Grafana.
+          </p>
+        </div>
+        <div class="value-grid" aria-label="Engineering values">
+          <article>
+            <span>01</span>
+            <h3>Automation first</h3>
+            <p>If it repeats, it belongs in code, pipeline templates, scripts, or reusable Terraform modules.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Secure by design</h3>
+            <p>Secrets stay in Key Vault, identities are managed, and access follows RBAC instead of shortcuts.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Observable systems</h3>
+            <p>Deployments are not finished until metrics, logs, alerts, and rollback paths are clear.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section pipeline-section" id="pipeline">
+        <div class="section-kicker">Delivery model</div>
+        <div class="section-heading-row">
+          <h2>From commit to production with quality gates.</h2>
+          <p>
+            A DevOps flow shaped around the resume projects: code quality, containers, AKS, Key Vault, and monitoring.
+          </p>
+        </div>
+        <div class="pipeline-flow" aria-label="CI/CD pipeline stages">
+          <div class="pipeline-stage">
+            <span>01</span>
+            <strong>Code</strong>
+            <p>GitHub, Azure Repos, PR validation</p>
+          </div>
+          <div class="pipeline-stage">
+            <span>02</span>
+            <strong>Build</strong>
+            <p>Maven, Gradle, .NET Core, Docker</p>
+          </div>
+          <div class="pipeline-stage">
+            <span>03</span>
+            <strong>Test</strong>
+            <p>Unit tests, SonarQube gates</p>
+          </div>
+          <div class="pipeline-stage">
+            <span>04</span>
+            <strong>Deploy</strong>
+            <p>App Service, AKS, Helm, slots</p>
+          </div>
+          <div class="pipeline-stage">
+            <span>05</span>
+            <strong>Monitor</strong>
+            <p>Azure Monitor, Grafana, App Insights</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="skills">
+        <div class="section-kicker">Skills</div>
+        <div class="section-heading-row">
+          <h2>Cloud, containers, pipelines, security, and observability.</h2>
+          <p>
+            Grouped the way recruiters scan: platform, orchestration, IaC, CI/CD, monitoring, and identity.
+          </p>
+        </div>
+        <div class="skill-grid">
+          <article class="skill-card">
+            <h3>Cloud platforms</h3>
+            <p>Microsoft Azure, App Service, Azure Functions, VM, Storage, Networking, Monitor, Key Vault, Entra ID.</p>
+            <p class="skill-evidence">Evidence: enterprise Azure delivery, administration, identity, networking, and monitoring.</p>
+          </article>
+          <article class="skill-card">
+            <h3>Kubernetes / AKS</h3>
+            <p>AKS clusters, Helm charts, RBAC, Azure AD integration, ACR, rolling updates, microservices hosting.</p>
+            <p class="skill-evidence">Evidence: AKS migrations, Helm releases, ACR integration, probes, scaling, and RBAC.</p>
+          </article>
+          <article class="skill-card">
+            <h3>Infrastructure as Code</h3>
+            <p>Terraform, ARM templates, Bicep, Ansible, modular infrastructure, remote-state ready design.</p>
+            <p class="skill-evidence">Evidence: reusable Azure infrastructure patterns across Terraform, ARM, and Bicep.</p>
+          </article>
+          <article class="skill-card">
+            <h3>CI/CD</h3>
+            <p>Azure DevOps YAML and classic pipelines, GitHub Actions, Jenkins, quality gates, release approvals.</p>
+            <p class="skill-evidence">Evidence: automated build, test, scan, approval, deployment, and rollback workflows.</p>
+          </article>
+          <article class="skill-card">
+            <h3>Monitoring</h3>
+            <p>Azure Monitor, Application Insights, Prometheus, Grafana, Datadog, OpsRamp, production dashboards.</p>
+            <p class="skill-evidence">Evidence: platform dashboards, alert rules, application telemetry, and production handoff.</p>
+          </article>
+          <article class="skill-card">
+            <h3>Scripting and code</h3>
+            <p>PowerShell, Bash, Azure CLI, Java, Spring Boot, REST APIs, SQL, HTML, CSS, JavaScript, Python.</p>
+            <p class="skill-evidence">Evidence: release automation, operational scripts, APIs, and earlier Java application delivery.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section projects-section" id="projects">
+        <div class="section-kicker">Projects</div>
+        <div class="section-heading-row">
+          <h2>Selected cloud and DevOps work.</h2>
+          <p>
+            These summaries are sanitized from professional experience. Client names, source code, credentials, and environment-specific values are intentionally excluded.
+          </p>
+        </div>
+
+        <div class="filter-bar" aria-label="Project filters">
+          <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter-btn" type="button" data-filter="azure" aria-pressed="false">Azure</button>
+          <button class="filter-btn" type="button" data-filter="aks" aria-pressed="false">AKS</button>
+          <button class="filter-btn" type="button" data-filter="terraform" aria-pressed="false">Terraform</button>
+          <button class="filter-btn" type="button" data-filter="cicd" aria-pressed="false">CI/CD</button>
+          <button class="filter-btn" type="button" data-filter="security" aria-pressed="false">Security</button>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card" data-tags="azure cicd security">
+            <div class="project-media workflow-media" data-workflow="cicd">
+              <svg class="workflow-svg" viewBox="0 0 800 450" role="img" aria-labelledby="cicd-title cicd-desc">
+                <title id="cicd-title">Animated CI/CD pipeline</title>
+                <desc id="cicd-desc">Code moves through build, test, security, container, and production stages.</desc>
+                <rect class="workflow-bg" width="800" height="450" rx="28" />
+                <path class="workflow-route route-base" d="M80 225 H720" />
+                <path class="workflow-route route-flow workflow-anim" d="M80 225 H720" />
+                <g class="workflow-node step-1 workflow-anim" transform="translate(80 225)">
+                  <circle r="48" /><text y="7">CODE</text>
+                </g>
+                <g class="workflow-node step-2 workflow-anim" transform="translate(208 225)">
+                  <circle r="48" /><text y="7">BUILD</text>
+                </g>
+                <g class="workflow-node step-3 workflow-anim" transform="translate(336 225)">
+                  <circle r="48" /><text y="7">TEST</text>
+                </g>
+                <g class="workflow-node step-4 workflow-anim" transform="translate(464 225)">
+                  <circle r="48" /><text y="7">SCAN</text>
+                </g>
+                <g class="workflow-node step-5 workflow-anim" transform="translate(592 225)">
+                  <circle r="48" /><text y="7">IMAGE</text>
+                </g>
+                <g class="workflow-node step-6 workflow-anim" transform="translate(720 225)">
+                  <circle r="52" /><text y="7">LIVE</text>
+                </g>
+                <g class="workflow-caption">
+                  <rect x="250" y="335" width="300" height="54" rx="27" />
+                  <circle class="caption-dot workflow-anim" cx="282" cy="362" r="9" />
+                  <text x="306" y="369">Automated release in progress</text>
+                </g>
+              </svg>
+              <span>01</span>
+            </div>
+            <h3>.NET CI/CD on Azure App Service</h3>
+            <p>
+              Built automated build, test, code coverage, staging slot, production deployment, and monitoring flow for a .NET Core web app.
+            </p>
+            <div class="badge-row">
+              <span>Azure DevOps</span><span>GitHub Actions</span><span>SonarQube</span><span>Key Vault</span>
+            </div>
+          </article>
+
+          <article class="project-card" data-tags="azure aks terraform security">
+            <div class="project-media workflow-media" data-workflow="aks">
+              <svg class="workflow-svg" viewBox="0 0 800 450" role="img" aria-labelledby="aks-title aks-desc">
+                <title id="aks-title">Animated AKS platform workflow</title>
+                <desc id="aks-desc">A container image enters an AKS cluster, scales across pods, and sends health data to monitoring.</desc>
+                <rect class="workflow-bg" width="800" height="450" rx="28" />
+                <path class="workflow-route route-base" d="M95 225 H230 M570 225 H705" />
+                <path class="workflow-route route-flow workflow-anim" d="M95 225 H230 M570 225 H705" />
+                <g class="platform-endpoint step-1 workflow-anim" transform="translate(95 225)">
+                  <rect x="-58" y="-56" width="116" height="112" rx="22" />
+                  <text y="-8">ACR</text><text class="small-label" y="24">IMAGE</text>
+                </g>
+                <g class="cluster-frame">
+                  <rect x="230" y="86" width="340" height="278" rx="34" />
+                  <text class="cluster-title" x="400" y="128">AKS CLUSTER</text>
+                  <g class="pod step-2 workflow-anim" transform="translate(310 190)"><rect x="-42" y="-35" width="84" height="70" rx="13" /><text y="6">POD</text></g>
+                  <g class="pod step-3 workflow-anim" transform="translate(400 190)"><rect x="-42" y="-35" width="84" height="70" rx="13" /><text y="6">POD</text></g>
+                  <g class="pod step-4 workflow-anim" transform="translate(490 190)"><rect x="-42" y="-35" width="84" height="70" rx="13" /><text y="6">POD</text></g>
+                  <g class="pod step-3 workflow-anim" transform="translate(310 282)"><rect x="-42" y="-35" width="84" height="70" rx="13" /><text y="6">POD</text></g>
+                  <g class="pod step-4 workflow-anim" transform="translate(400 282)"><rect x="-42" y="-35" width="84" height="70" rx="13" /><text y="6">POD</text></g>
+                  <g class="pod step-5 workflow-anim" transform="translate(490 282)"><rect x="-42" y="-35" width="84" height="70" rx="13" /><text y="6">POD</text></g>
+                </g>
+                <g class="platform-endpoint step-6 workflow-anim" transform="translate(705 225)">
+                  <rect x="-58" y="-56" width="116" height="112" rx="22" />
+                  <path class="mini-chart workflow-anim" d="M-36 20 L-12 -8 L8 5 L34 -28" />
+                  <text y="-26">LIVE</text>
+                </g>
+              </svg>
+              <span>02</span>
+            </div>
+            <h3>AKS microservices with IaC</h3>
+            <p>
+              Migrated microservices to AKS, provisioned infrastructure with Terraform and ARM, deployed with Helm, and added Grafana observability.
+            </p>
+            <div class="badge-row">
+              <span>AKS</span><span>Docker</span><span>Helm</span><span>Terraform</span>
+            </div>
+            <div class="project-links">
+              <a href="case-studies/aks-terraform-platform/">Read detailed case study</a>
+              <a
+                href="https://github.com/ramakrishnareddykittech-svg/portfolioofRama/tree/main/case-studies/aks-terraform-platform"
+                target="_blank"
+                rel="noopener noreferrer"
+              >Repository evidence</a>
+            </div>
+          </article>
+
+          <article class="project-card" data-tags="azure terraform security">
+            <div class="project-arch secure" aria-hidden="true">
+              <span>VNet</span><i></i><span>Key Vault</span><i></i><span>RBAC</span>
+            </div>
+            <h3>Secure infrastructure automation</h3>
+            <p>
+              Automated Azure networking, identity, secrets, API Management, Azure Functions, and monitoring patterns for enterprise services.
+            </p>
+            <div class="badge-row">
+              <span>Terraform</span><span>APIM</span><span>Managed Identity</span><span>Azure Monitor</span>
+            </div>
+          </article>
+
+          <article class="project-card" data-tags="aks cicd security">
+            <div class="project-arch" aria-hidden="true">
+              <span>Java</span><i></i><span>Docker</span><i></i><span>AKS</span>
+            </div>
+            <h3>Java microservices pipeline to AKS</h3>
+            <p>
+              Packaged Java services, ran quality checks, built Docker images, pushed to ACR, and released to AKS using Helm charts.
+            </p>
+            <div class="badge-row">
+              <span>Java</span><span>Maven</span><span>ACR</span><span>Helm</span>
+            </div>
+          </article>
+
+          <article class="project-card" data-tags="cicd azure">
+            <div class="project-media workflow-media" data-workflow="observability">
+              <svg class="workflow-svg" viewBox="0 0 800 450" role="img" aria-labelledby="observe-title observe-desc">
+                <title id="observe-title">Animated observability workflow</title>
+                <desc id="observe-desc">Application, cluster, database, and cloud signals flow into a dashboard where an alert is resolved.</desc>
+                <rect class="workflow-bg" width="800" height="450" rx="28" />
+                <g class="source-stack">
+                  <g class="source-node step-1 workflow-anim" transform="translate(102 105)"><rect x="-58" y="-30" width="116" height="60" rx="15" /><text y="7">APP</text></g>
+                  <g class="source-node step-2 workflow-anim" transform="translate(102 195)"><rect x="-58" y="-30" width="116" height="60" rx="15" /><text y="7">AKS</text></g>
+                  <g class="source-node step-3 workflow-anim" transform="translate(102 285)"><rect x="-58" y="-30" width="116" height="60" rx="15" /><text y="7">DB</text></g>
+                  <g class="source-node step-4 workflow-anim" transform="translate(102 375)"><rect x="-58" y="-30" width="116" height="60" rx="15" /><text y="7">CLOUD</text></g>
+                </g>
+                <path class="workflow-route route-base" d="M160 105 C230 105 215 225 310 225 M160 195 C230 195 235 225 310 225 M160 285 C230 285 235 225 310 225 M160 375 C230 375 215 225 310 225 M370 225 H470" />
+                <path class="workflow-route route-flow workflow-anim" d="M160 105 C230 105 215 225 310 225 M160 195 C230 195 235 225 310 225 M160 285 C230 285 235 225 310 225 M160 375 C230 375 215 225 310 225 M370 225 H470" />
+                <g class="collector step-4 workflow-anim" transform="translate(340 225)">
+                  <circle r="48" /><text y="7">FLOW</text>
+                </g>
+                <g class="dashboard-frame step-5 workflow-anim">
+                  <rect x="470" y="70" width="270" height="310" rx="24" />
+                  <text class="dashboard-title" x="505" y="112">LIVE HEALTH</text>
+                  <path class="chart-grid" d="M505 165 H705 M505 225 H705 M505 285 H705" />
+                  <path class="health-chart workflow-anim" d="M505 270 L540 235 L575 252 L610 185 L645 215 L680 145 L705 164" />
+                  <g class="alert-card step-6 workflow-anim">
+                    <rect x="520" y="308" width="170" height="42" rx="21" />
+                    <circle cx="545" cy="329" r="8" />
+                    <text x="565" y="335">ALERT RESOLVED</text>
+                  </g>
+                </g>
+              </svg>
+              <span>05</span>
+            </div>
+            <h3>Deployment speed and reliability uplift</h3>
+            <p>
+              Resume-reported outcome: release time reduced from hours to under 15 minutes using automated pipelines, controlled rollout, health checks, and rollback-ready deployment patterns.
+            </p>
+            <div class="badge-row">
+              <span>Deployment slots</span><span>Rollback</span><span>App Insights</span><span>PowerShell</span>
+            </div>
+          </article>
+
+          <article class="project-card" data-tags="azure security">
+            <div class="project-arch secure" aria-hidden="true">
+              <span>API</span><i></i><span>Service Bus</span><i></i><span>Storage</span>
+            </div>
+            <h3>Azure Functions and API platform</h3>
+            <p>
+              Designed event-driven Azure Functions, REST APIs, Service Bus integration, storage patterns, and secure telemetry.
+            </p>
+            <div class="badge-row">
+              <span>Azure Functions</span><span>APIM</span><span>Service Bus</span><span>Storage</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section case-study-section" id="case-study">
+        <div class="section-kicker">Featured case study</div>
+        <div class="section-heading-row">
+          <h2>AKS platform delivery with Terraform, Helm, and secure Azure identity.</h2>
+          <p>
+            A sanitized implementation story covering architecture, release challenges, security choices, repository evidence, and measurable outcomes.
+          </p>
+        </div>
+
+        <div class="case-study-grid">
+          <figure class="case-study-architecture">
+            <img
+              src="case-studies/aks-terraform-platform/architecture.svg"
+              alt="Architecture showing Terraform provisioning Azure networking, AKS, ACR, Key Vault, monitoring, and a CI/CD release through Helm"
+              width="1200"
+              height="760"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>Sanitized reference architecture. Client-specific names and values are omitted.</figcaption>
+          </figure>
+
+          <div class="case-study-summary">
+            <p class="evidence-note">
+              Evidence basis: resume project history and portfolio repository documentation. This is not presented as a public copy of confidential client infrastructure.
+            </p>
+            <dl class="case-study-facts">
+              <div><dt>Provision</dt><dd>Terraform modules for networking, AKS, ACR, Key Vault, Log Analytics, and role assignments.</dd></div>
+              <div><dt>Release</dt><dd>Build and quality gates, immutable image publishing, Helm deployment, probes, and controlled rollback.</dd></div>
+              <div><dt>Protect</dt><dd>Managed identity, least-privilege RBAC, Key Vault-backed secrets, and separated environments.</dd></div>
+              <div><dt>Operate</dt><dd>Azure Monitor, Prometheus, Grafana, application telemetry, alerts, and runbook ownership.</dd></div>
+            </dl>
+            <div class="case-study-actions">
+              <a class="btn primary-btn" href="case-studies/aks-terraform-platform/">Open full case study</a>
+              <a
+                class="btn secondary-btn"
+                href="https://github.com/ramakrishnareddykittech-svg/portfolioofRama"
+                target="_blank"
+                rel="noopener noreferrer"
+              >View maintained repository</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-study-points">
+          <article>
+            <span>Challenge</span>
+            <h3>Repeatable environments without configuration drift</h3>
+            <p>Infrastructure and release configuration moved into reviewed Terraform and Helm definitions instead of manual portal changes.</p>
+          </article>
+          <article>
+            <span>Security decision</span>
+            <h3>Identity before stored credentials</h3>
+            <p>Managed identities and RBAC reduced long-lived secrets, while Key Vault remained the controlled source for application secrets.</p>
+          </article>
+          <article>
+            <span>Measured result</span>
+            <h3>Hours reduced to under 15 minutes</h3>
+            <p>The resume reports that automated pipelines reduced release turnaround to under 15 minutes and supported zero-downtime patterns.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section timeline-section" id="experience">
+        <div class="section-kicker">Experience</div>
+        <div class="section-heading-row">
+          <h2>Career timeline.</h2>
+          <p>Cloud delivery, DevOps automation, and earlier Java enterprise engineering experience.</p>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div>
+              <p class="timeline-date">Current role</p>
+              <h3>Senior DevOps Engineer, American Express</h3>
+              <p>
+                Current employer verified from the public LinkedIn profile. Client, platform, and project details are kept high-level to respect confidentiality.
+              </p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div>
+              <p class="timeline-date">May 2022 - July 2025</p>
+              <h3>Senior DevOps Engineer, HCLTech</h3>
+              <p>
+                Built Azure DevOps pipelines, AKS deployment automation, Key Vault integrations, Terraform infrastructure, and observability workflows for enterprise cloud workloads.
+              </p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div>
+              <p class="timeline-date">March 2018 - May 2022</p>
+              <h3>Software Engineer, Mphasis</h3>
+              <p>
+                Developed Java/J2EE, Spring Boot, Hibernate, REST and SOAP services, SQL-backed systems, and unit-tested business logic before moving deeper into DevOps.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section cert-section" id="certifications">
+        <div class="section-kicker">Certifications</div>
+        <div class="section-heading-row">
+          <h2>Microsoft cloud credentials.</h2>
+          <p>Certifications listed from the resume, kept clean and verifiable.</p>
+        </div>
+        <div class="cert-grid">
+          <article class="cert-card">
+            <span>AZ-104</span>
+            <h3>Azure Administrator Associate</h3>
+            <p>Microsoft, August 2025</p>
+          </article>
+          <article class="cert-card">
+            <span>AZ-400</span>
+            <h3>Azure DevOps Engineer Expert</h3>
+            <p>Microsoft, September 2025</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section notes-section" id="notes">
+        <div class="section-kicker">Technical articles</div>
+        <div class="section-heading-row">
+          <h2>Practical writeups based on the platform work.</h2>
+          <p>Complete articles with implementation decisions, checks, failure modes, and production handoff guidance.</p>
+        </div>
+        <div class="note-list">
+          <article class="article-card">
+            <span>AKS + IaC</span>
+            <h3>Deploying AKS with Terraform and Helm</h3>
+            <p>A complete path from Azure foundation and identity to Helm releases, health probes, rollback, and environment promotion.</p>
+            <a href="articles/deploy-aks-terraform-helm.html">Read the article</a>
+          </article>
+          <article class="article-card">
+            <span>Observability</span>
+            <h3>Operating AKS with Azure Monitor and Grafana</h3>
+            <p>How to connect platform, workload, and release signals into useful dashboards, alerts, and incident-ready runbooks.</p>
+            <a href="articles/aks-observability-azure-monitor-grafana.html">Read the article</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="section flow-section" id="flow">
+        <div class="section-kicker">Project map</div>
+        <div class="section-heading-row">
+          <h2>How the project work connects.</h2>
+          <p>
+            Each project proves one part of the same Azure delivery system, from infrastructure and release automation to security and production support.
+          </p>
+        </div>
+
+        <div class="concept-board" aria-label="Cloud DevOps portfolio project concept map">
+          <svg class="concept-lines" viewBox="0 0 1000 760" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <marker id="arrow-tip" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z"></path>
+              </marker>
+            </defs>
+            <path d="M 435 330 C 370 280 325 230 275 195" marker-end="url(#arrow-tip)"></path>
+            <path d="M 500 295 L 500 205" marker-end="url(#arrow-tip)"></path>
+            <path d="M 565 330 C 630 280 675 230 725 195" marker-end="url(#arrow-tip)"></path>
+            <path d="M 365 380 L 285 380" marker-end="url(#arrow-tip)"></path>
+            <path d="M 635 380 L 715 380" marker-end="url(#arrow-tip)"></path>
+            <path d="M 500 510 L 500 580" marker-end="url(#arrow-tip)"></path>
+          </svg>
+
+          <article class="concept-node concept-center">
+            <span>Delivery hub</span>
+            <strong>Azure DevOps project portfolio</strong>
+            <p>A connected system for provisioning, building, securing, deploying, and operating cloud workloads.</p>
+          </article>
+
+          <article class="concept-node concept-aks">
+            <span>Platform</span>
+            <strong>AKS microservices platform</strong>
+            <p>ACR images move through Helm into AKS with namespaces, probes, scaling, RBAC, and Key Vault integration.</p>
+            <small>AKS topology</small>
+          </article>
+
+          <article class="concept-node concept-cicd">
+            <span>Automation</span>
+            <strong>CI/CD release pipeline</strong>
+            <p>Source changes pass through build, test, quality scan, image publishing, approval, and deployment.</p>
+            <small>Release flow</small>
+          </article>
+
+          <article class="concept-node concept-iac">
+            <span>Foundation</span>
+            <strong>Terraform infrastructure</strong>
+            <p>Reusable modules create networking, AKS, ACR, Key Vault, monitoring, tagging, and remote state.</p>
+            <small>Azure resource map</small>
+          </article>
+
+          <article class="concept-node concept-sec">
+            <span>Protection</span>
+            <strong>Security and identity</strong>
+            <p>Managed Identity, RBAC, Key Vault, private networking, policy, and audit controls protect the platform.</p>
+            <small>Trust boundary</small>
+          </article>
+
+          <article class="concept-node concept-obs">
+            <span>Operations</span>
+            <strong>Monitoring and reliability</strong>
+            <p>Azure Monitor, App Insights, Prometheus, Grafana, alerts, and runbooks close the delivery loop.</p>
+            <small>Telemetry path</small>
+          </article>
+
+          <article class="concept-node concept-proof">
+            <span>Evidence</span>
+            <strong>Architecture and outcomes</strong>
+            <p>Project summaries connect the tools used, implementation decisions, diagrams, and measurable results.</p>
+            <small>Portfolio proof</small>
+          </article>
+        </div>
+
+        <div class="flow-details">
+          <article>
+            <h3>Provision</h3>
+            <p>Terraform creates the Azure foundation, while identity, networking, and secrets are built into the platform from the start.</p>
+          </article>
+          <article>
+            <h3>Release</h3>
+            <p>CI/CD validates the application, publishes the container image, and deploys it to AKS through controlled release stages.</p>
+          </article>
+          <article>
+            <h3>Operate</h3>
+            <p>Monitoring, alerts, dashboards, and runbooks provide the feedback needed to keep releases healthy and improve reliability.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section contact-section" id="contact">
+        <div class="contact-panel">
+          <div>
+            <div class="section-kicker">Contact</div>
+            <h2>Open to Cloud and DevOps engineering conversations.</h2>
+            <p>
+              Reach out for Azure DevOps, AKS, Terraform, CI/CD automation, monitoring, or secure cloud platform work.
+            </p>
+          </div>
+          <form
+            class="contact-form"
+            id="contact-form"
+            data-recipient="RAMAKRISHNA.REDDYIT@GMAIL.COM"
+          >
+            <label>
+              Name
+              <input name="name" type="text" autocomplete="name" required />
+            </label>
+            <label>
+              Email
+              <input name="email" type="email" autocomplete="email" required />
+            </label>
+            <label>
+              Message
+              <textarea name="message" rows="4" required></textarea>
+            </label>
+            <p class="form-note">This prepares an email in your email app. Nothing is sent automatically.</p>
+            <button class="btn primary-btn" type="submit">Prepare Email</button>
+            <p class="form-status" role="status" aria-live="polite"></p>
+            <noscript>
+              <p class="form-note">
+                JavaScript is off. Email
+                <a href="mailto:RAMAKRISHNA.REDDYIT@GMAIL.COM">RAMAKRISHNA.REDDYIT@GMAIL.COM</a>
+                directly.
+              </p>
+            </noscript>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Ramakrishna Reddy Kandala</p>
+      <p>Azure DevOps | AKS | Terraform | CI/CD | Cloud Security</p>
+    </footer>
   </body>
 </html>
