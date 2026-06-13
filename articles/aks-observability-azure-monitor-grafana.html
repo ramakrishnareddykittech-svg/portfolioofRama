@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Operating AKS With Azure Monitor and Grafana | Ramakrishna Reddy</title>
+    <meta
+      name="description"
+      content="A practical AKS observability guide connecting Azure Monitor, Prometheus, Grafana, application telemetry, alerts, releases, and runbooks."
+    />
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../styles.css?v=20260613-consolidated1" />
+  </head>
+  <body class="article-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="article-header">
+      <a href="../index.html">Ramakrishna Reddy</a>
+      <a href="../case-studies/aks-terraform-platform/">AKS case study</a>
+    </header>
+
+    <main class="article-shell" id="main">
+      <header class="article-hero">
+        <div class="section-kicker">AKS observability</div>
+        <h1>Operating AKS with Azure Monitor and Grafana after the deployment succeeds.</h1>
+        <p class="article-dek">
+          How to turn cluster, workload, dependency, and release data into dashboards and alerts that help during a real incident.
+        </p>
+        <div class="article-meta">
+          <span>By Ramakrishna Reddy Kandala</span>
+          <span>9 minute read</span>
+          <span>AKS · Azure Monitor · Prometheus · Grafana</span>
+        </div>
+      </header>
+
+      <article class="article-content">
+        <h2>A green pipeline is not production health</h2>
+        <p>
+          A pipeline can report success while users receive errors, pods restart, dependencies time out, or latency grows. Deployment status is one signal. Operations needs a connected view of the platform, the application, its dependencies, and the release that changed them.
+        </p>
+
+        <h2>Organize signals into four layers</h2>
+        <h3>1. Cluster and node health</h3>
+        <p>
+          Track node readiness, CPU and memory pressure, disk pressure, scheduling failures, network problems, and autoscaler behavior. These signals answer whether the platform can run the requested workloads.
+        </p>
+
+        <h3>2. Kubernetes workload health</h3>
+        <p>
+          Track desired versus available replicas, pending pods, restart counts, OOM kills, failed probes, deployment rollout duration, and namespace resource usage.
+        </p>
+
+        <h3>3. Application and dependency health</h3>
+        <p>
+          Track request rate, error rate, latency, saturation, queue depth, database calls, external API failures, and business-level success signals. Container health alone cannot tell whether a payment, order, or login flow works.
+        </p>
+
+        <h3>4. Release health</h3>
+        <p>
+          Add deployment annotations or variables to dashboards so an error spike can be compared with the image tag, pipeline run, commit, and Helm revision that introduced it.
+        </p>
+
+        <h2>Use each tool for the job it does well</h2>
+        <ul>
+          <li><strong>Azure Monitor and Log Analytics:</strong> Azure resource context, activity, inventory, container logs, and Kusto-based investigation.</li>
+          <li><strong>Prometheus:</strong> time-series workload and Kubernetes metrics with flexible labels.</li>
+          <li><strong>Grafana:</strong> shared operational dashboards across platform and application signals.</li>
+          <li><strong>Application Insights:</strong> request traces, exceptions, dependencies, and application performance.</li>
+        </ul>
+        <p>
+          The goal is not to duplicate every signal in every tool. Define which source is authoritative for each operational question.
+        </p>
+
+        <h2>Build dashboards around decisions</h2>
+        <p>
+          A dashboard should help someone decide what to do next. A useful AKS service view can answer:
+        </p>
+        <ul>
+          <li>Are users affected?</li>
+          <li>Did the problem start after a deployment?</li>
+          <li>Is the failure isolated to one pod, node, namespace, or region?</li>
+          <li>Is the application failing, or is a dependency slow?</li>
+          <li>Can the workload scale, or is it blocked by resource limits?</li>
+          <li>Should the release continue, pause, or roll back?</li>
+        </ul>
+
+        <div class="article-callout">
+          Avoid dashboards made only of infrastructure utilization. CPU can look normal while users receive errors. Always include service-level behavior.
+        </div>
+
+        <h2>Create alerts that lead to action</h2>
+        <p>
+          Alerts should be specific enough to act on and stable enough to trust. Every production alert needs an owner, a severity, a clear condition, useful context, and a runbook.
+        </p>
+        <p>
+          Examples include sustained error-rate increase, unavailable replicas, repeated OOM kills, a deployment exceeding its expected rollout time, or a critical dependency crossing its latency objective.
+        </p>
+        <p>
+          Do not alert separately on every noisy symptom. Combine related signals and use a time window that avoids paging on short, harmless transitions.
+        </p>
+
+        <h2>Keep logs queryable</h2>
+        <p>
+          Structured logs should include a timestamp, severity, service, environment, request or correlation ID, and a safe error description. Avoid logging secrets, tokens, connection strings, or personal data.
+        </p>
+        <pre><code>{
+  "level": "error",
+  "service": "orders-api",
+  "environment": "prod",
+  "correlationId": "7f8b...",
+  "event": "dependency_timeout",
+  "dependency": "inventory-api"
+}</code></pre>
+        <p>
+          Correlation IDs connect ingress, application, and dependency events. Without them, incident investigation becomes a manual search across unrelated timestamps.
+        </p>
+
+        <h2>Observe the rollout itself</h2>
+        <p>
+          During a release, watch available replicas, pod readiness, restart count, error rate, latency, and dependency behavior. Compare the new and previous revision where possible.
+        </p>
+        <p>
+          A release gate should fail when health moves outside agreed limits. Waiting for users to report a problem is not a validation strategy.
+        </p>
+
+        <h2>Write the runbook while the context is fresh</h2>
+        <p>
+          A useful runbook includes the dashboard link, common failure patterns, safe diagnostic commands, rollback steps, dependency contacts, and conditions that require escalation. Keep it close to the service and review it after incidents.
+        </p>
+
+        <h2>Production handoff questions</h2>
+        <ul>
+          <li>Who owns each alert during and outside business hours?</li>
+          <li>Which dashboard is the starting point for this service?</li>
+          <li>How long are logs and metrics retained?</li>
+          <li>Can an operator identify the deployed image and Helm revision?</li>
+          <li>What is the rollback command and when should it be used?</li>
+          <li>Which signals prove that users recovered after mitigation?</li>
+        </ul>
+
+        <h2>The operating principle</h2>
+        <p>
+          Observability is complete when the team can detect a meaningful problem, understand its scope, connect it to a change, choose a safe response, and confirm recovery. Tools matter, but ownership and decision-ready signals are what make the platform operable.
+        </p>
+
+        <div class="article-next">
+          <a class="btn primary-btn" href="../case-studies/aks-terraform-platform/">Open the case study</a>
+          <a class="btn secondary-btn" href="deploy-aks-terraform-helm.html">Read the deployment article</a>
+        </div>
+      </article>
+    </main>
+  </body>
+</html>

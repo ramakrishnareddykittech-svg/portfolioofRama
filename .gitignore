@@ -1,4 +1,14 @@
+# Local review artifacts
+qa-*.png
+smoke-*.png
+/*.docx
+
+# Unused source/reference assets kept locally
+/assets/project-*.png
+/assets/reference/
+/assets/resume.docx
+
+# Local tooling
 node_modules/
-dist/
-.vite/
-npm-debug.log*
+.DS_Store
+Thumbs.db

@@ -1,38 +1,64 @@
-# Ramakrishna Reddy Portfolio
+# Ramakrishna Reddy Kandala - Cloud and DevOps Portfolio
 
-Cloud Incident War Room style portfolio for Azure DevOps, AKS, Terraform, GitOps, Grafana, and AIOps interview storytelling.
+The maintained source for Ramakrishna Reddy Kandala's portfolio.
 
-## Run Locally
+Live site after GitHub Pages deployment:
+
+`https://ramakrishnareddykittech-svg.github.io/portfolioofRama/`
+
+## What Is Included
+
+- Azure, AKS, Terraform, CI/CD, security, and observability experience
+- a sanitized AKS and Terraform case study with an architecture diagram
+- two complete technical articles
+- downloadable resume
+- responsive light and dark themes
+- GitHub Pages verification and deployment workflow
+
+## Project Structure
+
+```text
+.
+|-- index.html
+|-- styles.css
+|-- script.js
+|-- assets/
+|-- articles/
+|-- case-studies/
+|-- scripts/check-site.mjs
+`-- .github/workflows/deploy-pages.yml
+```
+
+## Local Validation
+
+Requires Node.js 22 or newer:
 
 ```powershell
-npm install
-npm run dev
+npm run check
 ```
 
-Local URL:
+## Local Preview
 
-```text
-http://127.0.0.1:5180/
-```
-
-## Build
+From PowerShell:
 
 ```powershell
-npm run build
+python -m http.server 5180 --bind 127.0.0.1
 ```
 
-The production output is created in:
+Open:
 
-```text
-dist
-```
+`http://127.0.0.1:5180/`
 
-## Free Hosting Settings
+## Deployment
 
-Use these settings on Vercel, Netlify, or Cloudflare Pages:
+Pushes to `main` run `.github/workflows/deploy-pages.yml`.
 
-```text
-Framework: Vite
-Build command: npm run build
-Output directory: dist
-```
+The workflow:
+
+1. validates JavaScript and all local HTML references
+2. uploads the static site as a GitHub Pages artifact
+3. deploys the artifact to the `github-pages` environment
+
+## Evidence and Privacy
+
+The case study is based on resume project history. Client names, source code, credentials, subscription identifiers, and environment-specific values are not published.
